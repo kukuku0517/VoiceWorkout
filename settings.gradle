@@ -1,6 +1,6 @@
+include ':presentation2'
 include ':util'
 include ':domain'
-include ':presentation'
 include ':data'
 include ':app'
 rootProject.name = "BaseProject"
