@@ -14,25 +14,22 @@ data class WorkoutRecord(
 )
 
 sealed class WorkoutAction {
-    data class Weight(
-        val meta: WorkoutMeta?,
-        val set: Int,
-        val weight: Int
-    )
-
     data class Duration(
-        val meta: WorkoutMeta?,
         val set: Int,
-        val duration: Int
+        val duration: Int,
+        val weight: Int?,
+        val meta: WorkoutMeta?
     )
 
     data class Count(
-        val meta: WorkoutMeta?,
         val set: Int,
-        val count: Int
+        val count: Int,
+        val weight: Int?,
+        val meta: WorkoutMeta?
     )
 }
-sealed class WorkoutMeta{
+
+sealed class WorkoutMeta {
     data class Original(
         val id: Int,
         val type: WorkoutType,
