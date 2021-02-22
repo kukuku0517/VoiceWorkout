@@ -7,7 +7,8 @@ import com.example.domain.UseCaseFuture
 import com.example.domain.UseCaseParameterNullPointerException
 import com.example.util.Time
 
-class GetWorkoutUC(val workoutRepository: WorkoutRepository) : UseCaseFuture<Time, WorkoutRecord> {
+class GetWorkoutUC(private val workoutRepository: WorkoutRepository) :
+    UseCaseFuture<Time, WorkoutRecord> {
     override suspend fun invoke(params: Time?): WorkoutRecord {
         params ?: throw UseCaseParameterNullPointerException()
         return workoutRepository.getWorkout(params)
@@ -15,7 +16,7 @@ class GetWorkoutUC(val workoutRepository: WorkoutRepository) : UseCaseFuture<Tim
 
 }
 
-class PostWorkoutUC(val workoutRepository: WorkoutRepository) :
+class PostWorkoutUC(private val workoutRepository: WorkoutRepository) :
     UseCaseFuture<WorkoutRecord, WorkoutRecord> {
     override suspend fun invoke(params: WorkoutRecord?): WorkoutRecord {
         params ?: throw UseCaseParameterNullPointerException()
@@ -23,11 +24,24 @@ class PostWorkoutUC(val workoutRepository: WorkoutRepository) :
     }
 }
 
-class ParseWorkoutActionUC(val textParser: TextParser) :
-    UseCaseFuture<String, Pair<List<WorkoutAction>, String>> {
-    override suspend fun invoke(params: String?): Pair<List<WorkoutAction>, String> {
+class ParseWorkoutActionUC(
+    private val textParser: TextParser,
+    private val workoutRepository: WorkoutRepository
+) : UseCaseFuture<Pair<String, Time>, Pair<List<WorkoutAction>, String>> {
+    override suspend fun invoke(params: Pair<String, Time>?): Pair<List<WorkoutAction>, String> {
         params ?: throw UseCaseParameterNullPointerException()
-        return textParser.extractWorkout(params)
+        val parseResults = textParser.extractWorkoutForTest(params.first).first
+        return parseResults.map {
+            val meta = workoutRepository.getMeta(it.name)
+            WorkoutAction.Count(
+                id = 0,
+                set = it.set ?: 0,
+                count = it.unitCount ?: 0,
+                weight = it.weight,
+                meta = meta,
+                createdAt = params.second
+            )
+        } to ""
     }
 
 }

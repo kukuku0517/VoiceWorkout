@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,36 +7,77 @@
     android:orientation="vertical"
     tools:context=".workoutrecord.WorkoutRecordActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mTbWorkoutRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/mTvWorkoutRecordDate"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRvWorkoutRecord"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/item_workout_record"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mTbWorkoutRecord" />
+
     <TextView
         android:id="@+id/mTvWorkoutRecordMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1213" />
+        android:text="1213"
+        app:layout_constraintBottom_toTopOf="@id/mTvWorkoutRecordState" />
 
     <TextView
         android:id="@+id/mTvWorkoutRecordState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1213" />
+        android:text="1213"
+        app:layout_constraintBottom_toTopOf="@id/mLayoutWorkoutRecord" />
 
-    <Button
-        android:id="@+id/mBtnWorkoutRecordStart"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mLayoutWorkoutRecord"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="record"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <Button
-        android:id="@+id/mBtnWorkoutRecordStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="stop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtnWorkoutRecord"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/circle_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+        <ProgressBar
+            android:id="@+id/mPbWorkoutRecord"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="8dp"
+            android:indeterminate="false"
+            android:progress="0"
+            android:progressDrawable="@drawable/circle_progress"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/mBtnWorkoutRecord"
+            app:layout_constraintLeft_toLeftOf="@id/mBtnWorkoutRecord"
+            app:layout_constraintRight_toRightOf="@id/mBtnWorkoutRecord"
+            app:layout_constraintTop_toTopOf="@id/mBtnWorkoutRecord"
+            tools:progress="30" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

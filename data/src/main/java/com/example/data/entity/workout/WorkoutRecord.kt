@@ -14,37 +14,61 @@ data class WorkoutRecord(
 )
 
 sealed class WorkoutAction {
+    abstract val id: Int
+    abstract val set: Int
+    abstract val weight: Int?
+    abstract val meta: WorkoutMeta?
+    abstract val createdAt:Time
+    abstract fun getCountOrDuration(): Int
+
     data class Duration(
-        val set: Int,
-        val duration: Int,
-        val weight: Int?,
-        val meta: WorkoutMeta?
-    )
+        override val id: Int,
+        override val set: Int,
+        override val weight: Int?,
+        override val meta: WorkoutMeta?,
+        override val createdAt: Time,
+        val duration: Int
+    ) : WorkoutAction() {
+        override fun getCountOrDuration(): Int {
+            return duration
+        }
+    }
 
     data class Count(
-        val set: Int,
-        val count: Int,
-        val weight: Int?,
-        val meta: WorkoutMeta?
-    )
+        override val id: Int,
+        override val set: Int,
+        override val weight: Int?,
+        override val meta: WorkoutMeta?,
+        override val createdAt: Time,
+        val count: Int
+    ) : WorkoutAction() {
+        override fun getCountOrDuration(): Int {
+            return count
+        }
+    }
 }
 
 sealed class WorkoutMeta {
+    abstract val type: WorkoutType
+    abstract val name: String
+    abstract val part: String?
+
     data class Original(
         val id: Int,
-        val type: WorkoutType,
-        val name: String,
-        val part: String?
-    )
+        override val type: WorkoutType,
+        override val name: String,
+        override val part: String?
+    ) : WorkoutMeta()
 
     data class Custom(
-        val type: WorkoutType,
-        val name: String,
-        val part: String?
-    )
+        override val type: WorkoutType,
+        override val name: String,
+        override val part: String?
+    ) : WorkoutMeta()
 }
 
 enum class WorkoutType {
+
     WEIGHT,
     NON_WEIGHT,
     REST

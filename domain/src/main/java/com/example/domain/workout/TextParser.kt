@@ -140,7 +140,7 @@ class TextParser {
             }
         }
 
-        val nameEndIdx = words.indexOfFirst { it == "" } - 1
+        val nameEndIdx = Math.max(words.indexOfFirst { it == "" } - 1, 0)
         var name =
             words.subList(0, nameEndIdx + 1).reduce { acc, s -> "$acc $s" }
         nodes.add(

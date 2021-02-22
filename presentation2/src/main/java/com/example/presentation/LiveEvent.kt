@@ -117,7 +117,7 @@ class Event<out T>(private val content: T) {
 }
 
 fun <T> MutableLiveData<T>.set(copy: () -> T) {
-    this.postValue(copy())
+    this.value = (copy())
 }
 
 

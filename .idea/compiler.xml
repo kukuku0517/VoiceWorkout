@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="BaseProject.app" target="1.8" />
+      <module name="BaseProject.cache" target="1.8" />
       <module name="BaseProject.data2" target="1.8" />
       <module name="BaseProject.presentation" target="1.8" />
       <module name="BaseProject.presentation2" target="1.8" />

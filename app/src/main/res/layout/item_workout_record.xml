@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <ImageView
+        android:id="@+id/mIvWorkoutRecordIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_sports_cricket_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mTvWorkoutRecordItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toRightOf="@id/mIvWorkoutRecordIcon"
+        tools:text="스쿼트" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/mIvWorkoutRecordIcon"
+        app:layout_constraintTop_toBottomOf="@id/mTvWorkoutRecordItemName">
+
+        <EditText
+            android:id="@+id/mEtWorkoutRecordItemSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="number"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="3" />
+
+        <TextView
+            android:id="@+id/mTvWorkoutRecordItemSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="세트" />
+
+        <EditText
+            android:id="@+id/mEtWorkoutRecordItemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="number"
+            android:paddingLeft="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="3" />
+
+        <TextView
+            android:id="@+id/mTvWorkoutRecordItemCount"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="회" />
+
+        <EditText
+            android:id="@+id/mEtWorkoutRecordItemWeight"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="number"
+            android:paddingLeft="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="3" />
+
+        <TextView
+            android:id="@+id/mTvWorkoutRecordItemWeight"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="kg" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mBtnWorkoutSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="갱신" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

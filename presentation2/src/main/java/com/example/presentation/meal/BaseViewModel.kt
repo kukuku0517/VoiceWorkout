@@ -6,6 +6,7 @@ import com.example.presentation.MutableLiveEvent
 
 abstract class BaseViewModel<STATE> : ViewModel() {
     val state = stateOf<STATE>()
+    val toastEvent = eventOf<String>()
 }
 
 
